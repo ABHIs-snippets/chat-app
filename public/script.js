@@ -52,6 +52,7 @@ let nameElem = document.createElement('small');
 nameElem.innerText = msg.name;
 msgDiv.prepend(nameElem);
 chatBody.append(msgDiv);
+msgDiv.scrollIntoView()
 }
 
 // show typing msg

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat application | NodeJs</title>
+
+    <style>
+        *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            font-family: sans-serif;
+        }
+        .chat__box {
+    max-width: 460px;
+    background: #172237;
+    color: rgb(232, 244, 247);
+    margin: 40px auto 0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.chat_header {
+    padding: 8px;
+    /* text-align: center; */
+    border-bottom: 2px solid #3f7c83;
+    font-size: 18px;
+}
+.chat_body{
+    padding: 0 16px;
+    height: 400px;
+    overflow-y: scroll;
+    border-bottom: 2px solid #3f7c83;
+}
+.chat_body::-webkit-scrollbar{
+    display: none;
+}
+.chat_footer form{
+    padding:8px;
+}
+.msg {
+    background: #00000026;
+    max-width: 70%;
+    width: fit-content;
+    font-size: 14px;
+    padding: 6px 10px;
+    margin: 6px 0;
+    border: 1px solid #404040;
+    clear: both;
+    box-shadow: 0 0 4px #5555558c;
+    animation: msgPopup .3s cubic-bezier(0.03, 0.69, 0.14, 1.51) forwards;
+}
+@keyframes msgPopup{
+    0%{
+        opacity: 0;
+        transform: scale(0) ;
+    }
+    100%{
+        opacity: 1;
+        transform: scale(1) translate(0);
+    }
+}
+.self{
+    border-radius: 8px 8px 0px 8px;
+    float: right;
+}
+.user{
+    border-radius: 8px 8px 8px 0px;
+}
+input{
+    width: 80%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    padding: 4px;
+    color: #fff;
+}
+button{   
+     background: #1a283d;
+    border: 2px solid #3694802e;
+    font-size: 18px;
+    color: #fff;
+    border-radius: 4px;
+    padding: 4px 8px;
+    box-shadow: 0 0 4px #2e6563a8;
+    cursor: pointer;
+}
+small{
+    display: block;
+    font-size: 10px;
+    color: #56c3d8;
+    margin-bottom: 2px;
+}
+.typing{
+    display: none;
+}
+.typingDot{
+    width: 5px;
+    height: 5px;
+    background-color: #fff;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    animation: infinite jump .4s ease-in-out alternate;
+}
+.typingDot:nth-child(2){
+    animation-delay: .1s;
+}
+.typingDot:nth-child(3){
+    animation-delay: .2s;
+}
+.typingDot:nth-child(4){
+    animation-delay: .3s;
+}
+@keyframes jump{
+    0%{
+top: -2px;
+    }
+    100%{
+top: 2px;
+    }
+}
+    </style>
+</head>
+<body>
+
+<section>
+    <div class="chat__box">
+        <div class="chat_header">
+            <h3>Name</h3>
+        </div>
+        <div class="chat_body" >
+            <div id="chatBody">
+
+            <div class="msg self">
+                
+                Lorem ipsum dolor sit.
+            </div>
+            <div class="msg user">
+                Lorem, ipsum.
+            </div>
+        </div>
+          <div class="typing msg user">
+              <small></small>
+              <span class="typingDot"></span>
+              <span class="typingDot"></span>
+              <span class="typingDot"></span>
+            </div>
+        </div>
+        <div class="chat_footer">
+            <form id="msgForm">
+                <input type="text" id="MsgInput" placeholder="Enter your message">
+                <button type="submit">send</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/chat/script.js"></script>
+</body>
+</html>
